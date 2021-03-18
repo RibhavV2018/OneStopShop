@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>One Stop Shop!</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <p1></p1>
+    <style>
+        .mystyle {
+             margin: 1em;
+             border: 2px solid black;
+             padding: 2em;
+
+           }
+         .flexbox {
+             display: flex;
+             flex-direction: row;
+             margin: auto;
+             width: 15my pc%
+           }
+            .normal {
+            width: 100%;
+            height: 30px;
+            background-color: #7cb342
+        }
+        .warning {
+            width: 100%;
+            height: 30px;
+            background-color: red
+        }
+    </style>
+    <style>
+          /* label color */
+       .input-field label {
+         color: #bdbdbd;
+       }
+       /* label focus color */
+       .input-field input[type=text]:focus + label {
+         color:  #bdbdbd;
+       }
+          /* label underline focus color */
+       .input-field input[type=text]:focus {
+         border-bottom: 1px solid #bdbdbd;
+         box-shadow: 0 1px 0 0 #bdbdbd;
+       }
+       /* valid color */
+       .input-field input[type=text].valid {
+         border-bottom: 1px solid #bdbdbd;
+         box-shadow: 0 1px 0 0 #bdbdbd;
+       }
+       /* invalid color */
+       .input-field input[type=text].invalid {
+         border-bottom: 1px solid #bdbdbd;
+         box-shadow: 0 1px 0 0 #bdbdbd;
+       }
+    </style>
+
+</head>
+<body>
+  <nav>
+    <div class="nav-wrapper" style = "background-color : #bdbdbd">
+      <a style = "color: black" href="/" class="brand-logo"><i class="material-icons">shop</i>1-stop-shop!</a>
+
+      <ul class="right hide-on-med-and-down">
+
+        <li><a style = "color: black" href="/"><i class="material-icons">add_shopping_cart</i></a></li>
+        <li><a style = "color: black" href="/"><i class="material-icons">shopping_cart</i></a></li>
+          <div>
+          </div>
+
+      </ul>
+    </div>
+    {% for message in get_flashed_messages(category_filter=["warning"]) %}
+
+            <li><p class="warning">{{ message }}</p></li>
+
+        {% endfor %}
+        {% for message in get_flashed_messages(category_filter=["green"]) %}
+
+            <li><p class="normal">{{ message }}</p></li>
+
+        {% endfor %}
+  </nav>
+   <h1 style = "font-size:70px; color: : black">Sell Products!</h1>
+    <form method = 'POST'>
+        <div class="input-group">
+            <label>Title</label>
+            <input class="input-field col s6" type="text" name = "Title" id = "T">
+            <label>Description</label>
+            <input class="input-field col s6" type="text" name = "Description" id = "D">
+            <label>Price</label>
+            <input class="input-field col s6" type="number" name = "Price" id = "P">
+            <label>Unit</label>
+            <input class="input-field col s6" type="text" name = "Unit" id = "U">
+            <label>Quantity Limit</label>
+            <input class="input-field col s6" type="number" name = "Quantity-Limit" id = "Q">
+            <label>Image link</label>
+            <input class="input-field col s6" type="text" name = "Image-Link" id = "I">
+        </div>
+        <input style = "background-color: #bdbdbd; color: black" class="waves-effect waves-light btn" type="submit" value="Sell">
+    </form>
+
+     <br>
+     <a style = "background-color: #bdbdbd; color: black" href="/" class="waves-effect waves-light btn">Back</a>
+     <script type="text/javascript" src="js/materialize.min.js"></script>
+</body>
+</html>

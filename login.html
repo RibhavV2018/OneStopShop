@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>One Stop Shop: Login</title>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <style>
+        .mystyle {
+             margin: 1em;
+             border: 2px solid black;
+             padding: 2em;
+
+           }
+         .flexbox {
+             display: flex;
+             flex-direction: row;
+             margin: auto;
+             width: 30%
+           }
+        .normal {
+            width: 100%;
+            height: 30px;
+            background-color: #7cb342
+        }
+        .warning {
+            width: 100%;
+            height: 30px;
+            background-color: red
+        }
+    </style>
+    <p1></p1>
+
+</head>
+<body style = "background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSgNUxuRyKOL6gqf6QPBACfgZrMxf8_9hLpPw&usqp=CAU')">
+    <div id = "m" class = "scale-transition">
+        {% for message in get_flashed_messages(category_filter=["warning"]) %}
+
+            <li><p class="warning">{{ message }}</p></li>
+
+        {% endfor %}
+        {% for message in get_flashed_messages(category_filter=["green"]) %}
+
+            <li><p class="normal">{{ message }}</p></li>
+
+        {% endfor %}
+    </div>
+    <h1 style = "color: white">Login</h1>
+    <a href = "/register" style = "color: white">Don't have an account? Click here!</a>
+    <br>
+    <br>
+    <div class = "flexbox" style = "background-color: white; margin: auto">
+        <div class = "mystyle">
+         <form method = "POST" >
+            <div class="input-group" style = "margin: auto; width: 80%">
+                <input class="input-field col s6" type="text" name = "Email" id = "Email" placeholder="Email">
+                <input class="input-field col s6" type="password" name = "Password" id = "Pass" placeholder="Password">
+            </div>
+             <input class="waves-effect waves-light btn" type="submit" value="Login">
+        </form>
+        </div>
+    </div>
+    <script>
+    </script>
+</body>

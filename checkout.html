@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Checkout!</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <style>
+           .mystyle {
+               margin: 1em;
+               border: 2px solid black;
+               padding: 2em;
+
+           }
+           .flexbox {
+               display: flex;
+               flex-direction: row;
+           }
+    </style>
+    <style>
+        .mystyle {
+             margin: 1em;
+             border: 2px solid black;
+             padding: 2em;
+
+           }
+         .flexbox {
+             display: flex;
+             flex-direction: row;
+             margin: auto;
+             width: 15my pc%
+           }
+            .normal {
+            width: 100%;
+            height: 30px;
+            background-color: #7cb342
+        }
+        .warning {
+            width: 100%;
+            height: 30px;
+            background-color: red
+        }
+    </style>
+</head>
+<body>
+    <nav>
+    <div class="nav-wrapper" style = "background-color : #bdbdbd">
+      <a style = "color: black" href="/" class="brand-logo"><i class="material-icons">shop</i>1-stop-shop!</a>
+
+      <ul class="right hide-on-med-and-down">
+
+        <li><a style = "color: black" href="/"><i class="material-icons">add_shopping_cart</i></a></li>
+        <li><a style = "color: black" href="/"><i class="material-icons">shopping_cart</i></a></li>
+          <div>
+          </div>
+
+      </ul>
+    </div>
+    {% for message in get_flashed_messages(category_filter=["warning"]) %}
+
+            <li><p class="warning">{{ message }}</p></li>
+
+        {% endfor %}
+        {% for message in get_flashed_messages(category_filter=["green"]) %}
+
+            <li><p class="normal">{{ message }}</p></li>
+
+        {% endfor %}
+  </nav>
+    <h1 style = 'font-size:70px;'>Checkout</h1>
+    {% for product in products %}
+        <div class = "flexbox">
+            <div class = "mystyle">
+                <img src = "{{product['Image-Link']}}">
+                <p>{{product['Title']}}</p>
+                <p>Quantity: {{product['Bought']}}</p>
+                <p>$ {{product['Price']}} / {{product['Unit']}}</p>
+                <p>Item Total: {{product['item-total']}}</p>
+
+            </div>
+        </div>
+    {% endfor %}
+    <h1 style = 'font-size:50px;'>Total: $    {{total}}</h1>
+    <a style = "color: black; background-color:  #bdbdbd" href="/index4" class="waves-effect waves-light btn">Buy</a>
+    <a style = "color: black; background-color:  #bdbdbd" href="/" class="waves-effect waves-light btn">Home</a>
+    <form method="POST">
+        <input style = "color: black; background-color:  #bdbdbd" class="waves-effect waves-light btn" type="submit" value="Empty Cart">
+    </form>
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+</body>
+
+</html>

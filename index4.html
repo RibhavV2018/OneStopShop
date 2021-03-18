@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>One Stop Shop!</title>
+     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <p1></p1>
+    <style>
+        .mystyle {
+             margin: 1em;
+             border: 2px solid black;
+             padding: 2em;
+
+           }
+         .flexbox {
+             display: flex;
+             flex-direction: row;
+             margin: auto;
+             width: 15my pc%
+           }
+            .normal {
+            width: 100%;
+            height: 30px;
+            background-color: #7cb342
+        }
+        .warning {
+            width: 100%;
+            height: 30px;
+            background-color: red
+        }
+    </style>
+</head>
+<body style = ' margin-left: auto; margin-right: auto; color:rgb(); background-position: top; background-attachment: fixed; background-repeat: no-repeat; height: 50%; width:100%; '>
+      <nav>
+    <div style = "background-color: #bdbdbd" class="nav-wrapper">
+      <a style = "color: black" href="/" class="brand-logo"><i class="material-icons">shop</i>1-stop-shop!</a>
+
+      <ul class="right hide-on-med-and-down">
+
+        <li><a style = "color: black" href="/sell"><i class="material-icons">add_shopping_cart</i></a></li>
+        <li><a style = "color: black" href="/index2"><i class="material-icons">shopping_cart</i></a></li>
+        <li><a style = "color: black" href="/index3"><i class="material-icons">search</i></a></li>
+          <div>
+          </div>
+
+      </ul>
+        <li><p style="width: 100%; background-color: #7cb342">Products have been successfully purchased<a href="/" style="float: right; background-color:#7cb342"><i class="material-icons">close</i></a></p></li>
+    </div>
+
+  </nav>
+      {% for message in get_flashed_messages(category_filter=["warning"]) %}
+
+            <li><p class="warning">{{ message }}</p></li>
+
+        {% endfor %}
+        {% for message in get_flashed_messages(category_filter=["green"]) %}
+
+            <li><p class="normal">{{ message }}</p></li>
+
+        {% endfor %}
+    <br>
+    <h1 style = 'font-size:70px; color: black'>One Stop Shop!</h1>
+    <br>
+   <div class="row", style = "margin-right: auto; margin-left:auto">
+                {% for product in products %}
+                    <div class="col s3">
+                        <div class="card">
+                            <div class="card-image">
+                                <img src="{{product['Image-Link']}}">
+
+                            </div>
+                            <div class="card-content">
+                                <span class="card-title">{{product['Title']}}</span>
+                                <p>$ {{product['Price']}} / {{product['Unit']}}</p>
+                                <form method = "POST">
+                                    <div class="input-field">
+                                        <select class="browser-default" name = "{{product['Title']}}">
+                                            <option value="0">None</option>
+                                            {% for n in range(1, product['Quantity-Limit']| int + 1) %}
+                                                <option value = "{{n}}">{{n}}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+
+                                    <input style = "color: black; background-color:  #bdbdbd" class="waves-effect waves-light btn #bdbdb" type="submit" value="Add to Cart">
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+
+                {% endfor %}
+             </div>
+         <br>
+         <a style = "color: black; background-color:  #bdbdbd" href="/checkout" class = "waves-efsfect waves-light btn #bdbdbd">Checkout</a>
+</body>
+
+</html>

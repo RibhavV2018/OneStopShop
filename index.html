@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>One Stop Shop!</title>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <p1></p1>
+    <style>
+        .mystyle {
+             margin: 1em;
+             border: 2px solid black;
+             padding: 2em;
+
+           }
+         .flexbox {
+             display: flex;
+             flex-direction: row;
+             margin: auto;
+             width: 15my pc%
+           }
+            .normal {
+            width: 100%;
+            height: 30px;
+            background-color: #7cb342
+        }
+        .warning {
+            width: 100%;
+            height: 30px;
+            background-color: red
+        }
+    </style>
+</head>
+<body style = ' margin-left: auto; margin-right: auto; color:rgb(); background-position: top; background-attachment: fixed; background-repeat: no-repeat; height: 50%; width:100%; '>
+
+    <div class = "navbar-fixed">
+    <nav>
+        <div class="nav-wrapper grey lighten-1">
+            <a href="/" style = "color: black" class="brand-logo"><i class="material-icons">shop</i>1-stop-shop!</a>
+
+            <ul class="right hide-on-med-and-down">
+                <li><a href="/logout" style = "color: black"><i class="material-icons">exit_to_app</i></a></li>
+                <li><a href="/sell" style = "color: black"><i class="material-icons">add_shopping_cart</i></a></li>
+                <li><a class = "scale-transition" id = "toggle3"href="#!" style = "color: black"><i class="material-icons">shopping_cart</i></a></li>
+                <li><a style = "color: black" id = "toggle"href="#!" class = "scale-transition"><i class="material-icons">search</i></a></li>
+            </ul>
+        </div>
+        <div id = "search" class="nav-wrapper scale-transition scale-out">
+            <form method = "POST">
+                <div class="input-field">
+                    <button type = "submit" style ="float: left; background-color: #bdbdbd"><i class = "material-icons">search</i></button>
+                        <div style="overflow: hidden; padding-right: .5em; background-color:#bdbdbd">
+                           <input name = "submit" type="text" style="width: 100%; color: black; background-color: #bdbdbd;" placeholder="Search..."/>
+                        </div>
+
+
+                </div>
+            </form>
+           </div>
+    </nav>
+    </div>
+        {% for message in get_flashed_messages(category_filter=["warning"]) %}
+
+            <p class="warning">{{ message }}</p>
+
+        {% endfor %}
+        {% for message in get_flashed_messages(category_filter=["green"]) %}
+
+            <p class="normal">{{ message }}</p>
+
+        {% endfor %}
+    <br>
+    <div id = "cart_div" style = "background-color: #bdbdbd; position: absolute; right: 100000000px;">
+        
+        <div id = "cart" class = "tab scale-transition scale-out" style = " float: right; background-color: #bdbdbd; border: 1px solid #ccc; width: 20%; height: 1000px">
+                 <p style = "color: black; text-align: center; font-size: 30px">Cart</p>
+                {% for product in p %}
+                        <div class="col s10">
+                            <div class="card grey lighten-1">
+                                <div class="card-image">
+                                    <img src="{{product['Image-Link']}}">
+
+                                </div>
+                                <div class="card-content">
+                                    <span class="card-title">{{product['Title']}}</span>
+                                    <p>$ {{product['Price']}} / {{product['Unit']}}</p>
+                                    <p>Quantity: {{product['Bought']}}</p>
+                                    <p>Item Total: {{product['item-total']}}</p>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    {% endfor %}
+
+         </div>
+    </div>
+    <br>
+    <h1 style = 'font-size:70px; color:  grey lighten-1'>One Stop Shop!</h1>
+    <br>
+    {% for product in products %}
+        <div class="row", style = "margin-right: auto; margin-left:auto">
+            <div class="w3-border w3-round-large">
+                    <div class="col s3">
+                        <div class="card">
+                            <div class="card-image white">
+                                <img src="{{product['Image-Link']}}">
+
+                            </div>
+                            <div class="card-content">
+                                <span class="card-title">{{product['Title']}}</span>
+                                <p>$ {{product['Price']}} / {{product['Unit']}}</p>
+                                <form method = "POST">
+                                    <div class="input-field">
+                                        <select class="browser-default" name = "{{product['Title']}}">
+                                            <option value="0">None</option>
+                                            {% for n in range(1, product['Quantity-Limit']| int + 1) %}
+                                                <option value = "{{n}}">{{n}}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+
+                                    <input style = "color: black" class="waves-effect waves-light btn grey lighten-1" type="submit" value="Add to Cart">
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+            </div>
+
+                {% endfor %}
+             </div>
+         <br>
+      <a href="/checkout" style = "color: black" class = "waves-effect waves-light btn grey lighten-1">Checkout</a>
+      <a href="/" style = "color: black" class = "waves-effect waves-light btn grey lighten-1">back</a>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+      <script type="text/javascript" src="www.js"></script>
+      <script>
+        $('#toggle').click(function() {
+            var y = document.getElementById("search");
+            var x = document.getElementById("cart");
+            if (y.className == "nav-wrapper scale-transition scale-out"){
+                $('#search').removeClass('scale-out');
+            }
+            else{
+               $('#search').addClass('scale-out');
+            }
+        })
+        $('#toggle3').click(function() {
+            var x = document.getElementById("cart");
+            var y = document.getElementById("search");
+
+            if (x.className == "tab scale-transition scale-out"){
+                $('#cart').removeClass('scale-out');
+                $('#cart_div').removeAttr('style');
+            }
+            else{
+                $('#cart').addClass('scale-out');
+
+                $('#cart_div').css({"position": "absolute", "right" : "100000000px"});
+            }
+        })
+      </script>
+
+
+</body>
+
+</html>
